@@ -1,10 +1,193 @@
 <!DOCTYPE html>
-<html>
+<html lang="sq">
 <head>
-  <title>Dyqan Peshkimi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streha e Peshkatarit</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #0b0f14; color: #fff; line-height: 1.5; }
+    .container { width: 92%; max-width: 1200px; margin: auto; }
+    header { padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(11,15,20,0.95); position: sticky; top: 0; z-index: 10; }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.4rem; font-weight: 700; }
+    .logo span { color: #d4af37; }
+    .hero { padding: 70px 0 40px; }
+    .hero h1 { font-size: 3rem; margin-bottom: 14px; }
+    .hero p { color: #c3ccd6; max-width: 700px; }
+    .products { padding: 30px 0 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; }
+    .card, .checkout { background: #121922; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .card h3 { margin-bottom: 10px; }
+    .price { color: #d4af37; font-size: 1.2rem; font-weight: bold; margin: 12px 0; }
+    .btn {
+      border: none; cursor: pointer; padding: 12px 16px; border-radius: 10px;
+      font-weight: bold; transition: 0.2s; width: 100%;
+    }
+    .btn-primary { background: #d4af37; color: #0b0f14; }
+    .btn-primary:hover { opacity: 0.92; }
+    .section-title { font-size: 2rem; margin: 25px 0 18px; }
+    .checkout-wrap { padding-bottom: 70px; }
+    form { display: grid; gap: 14px; }
+    input, textarea, select {
+      width: 100%; padding: 13px 14px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12); background: #0d131b; color: #fff;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    .summary {
+      background: #0d131b; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 16px; margin-top: 6px;
+    }
+    .row { display: flex; justify-content: space-between; margin: 8px 0; color: #d5dde6; gap: 16px; }
+    .total { font-weight: bold; font-size: 1.1rem; color: #d4af37; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; margin-top: 10px; }
+    footer { padding: 20px 0 40px; color: #95a2b1; text-align: center; }
+    .note { color: #9fb0c0; font-size: 0.95rem; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.1rem; }
+      .nav { flex-direction: column; gap: 10px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Mirësevini te Dyqani i Peshkimit 🎣</h1>
-  <p>Faqja po ndërtohet...</p>
+  <header>
+    <div class="container nav">
+      <div class="logo">Streha e <span>Peshkatarit</span></div>
+      <div>Dyqan Premium i Materialeve të Peshkimit</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Porosit direkt nga web-i</h1>
+      <p>
+        Zgjidh produktin, plotëso të dhënat dhe porosia të vjen direkt te email-i ynë.
+        Transporti shtohet automatikisht me 300 lekë.
+      </p>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2 class="section-title">Produkte</h2>
+    <div class="products">
+      <div class="card">
+        <h3>Kallam Spinning Premium</h3>
+        <p>Kallam elegant dhe i fortë për përdorim në det dhe breg.</p>
+        <div class="price">4,500 Lekë</div>
+        <button class="btn btn-primary" onclick="selectProduct('Kallam Spinning Premium', 4500)">Zgjidh këtë</button>
+      </div>
+
+      <div class="card">
+        <h3>Makinetë 3000 SW</h3>
+        <p>Makinetë e qëndrueshme me paraqitje premium dhe punë të butë.</p>
+        <div class="price">3,800 Lekë</div>
+        <button class="btn btn-primary" onclick="selectProduct('Makinetë 3000 SW', 3800)">Zgjidh këtë</button>
+      </div>
+
+      <div class="card">
+        <h3>Set i Plotë Peshkimi</h3>
+        <p>Kallam + makinetë + fije, gati për përdorim.</p>
+        <div class="price">8,900 Lekë</div>
+        <button class="btn btn-primary" onclick="selectProduct('Set i Plotë Peshkimi', 8900)">Zgjidh këtë</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container checkout-wrap">
+    <h2 class="section-title">Bëj Porosinë</h2>
+    <div class="checkout">
+      <form action="https://formsubmit.co/albaniatvc@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Porosi e re nga web-i">
+        <input type="hidden" name="_template" value="table">
+
+        <input type="hidden" id="productInput" name="Produkti" value="Kallam Spinning Premium">
+        <input type="hidden" id="productPriceInput" name="Cmimi i produktit" value="4500 Lekë">
+        <input type="hidden" id="shippingInput" name="Transporti" value="300 Lekë">
+        <input type="hidden" id="totalInput" name="Totali" value="4800 Lekë">
+
+        <label>Produkti</label>
+        <select id="productSelect" onchange="updateFromSelect()">
+          <option value="Kallam Spinning Premium|4500">Kallam Spinning Premium - 4,500 Lekë</option>
+          <option value="Makinetë 3000 SW|3800">Makinetë 3000 SW - 3,800 Lekë</option>
+          <option value="Set i Plotë Peshkimi|8900">Set i Plotë Peshkimi - 8,900 Lekë</option>
+        </select>
+
+        <label>Emri dhe mbiemri</label>
+        <input type="text" name="Emri i klientit" placeholder="Shkruaj emrin" required>
+
+        <label>Numri i telefonit</label>
+        <input type="text" name="Telefoni" placeholder="Shkruaj numrin" required>
+
+        <label>Qyteti / Adresa</label>
+        <input type="text" name="Adresa" placeholder="Shkruaj adresën e plotë" required>
+
+        <label>Shënim shtesë</label>
+        <textarea name="Shenim" placeholder="P.sh. ngjyra, modeli, ora e preferuar për telefonatë"></textarea>
+
+        <div class="summary">
+          <div class="row">
+            <span>Produkti:</span>
+            <span id="productNameView">Kallam Spinning Premium</span>
+          </div>
+          <div class="row">
+            <span>Çmimi:</span>
+            <span id="productPriceView">4,500 Lekë</span>
+          </div>
+          <div class="row">
+            <span>Transporti:</span>
+            <span>300 Lekë</span>
+          </div>
+          <div class="row total">
+            <span>Totali:</span>
+            <span id="totalView">4,800 Lekë</span>
+          </div>
+        </div>
+
+        <p class="note">Pas dërgimit të porosisë, të dhënat do të vijnë direkt në email.</p>
+
+        <button type="submit" class="btn btn-primary">Dërgo Porosinë</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Streha e Peshkatarit
+  </footer>
+
+  <script>
+    const SHIPPING = 300;
+
+    function formatLek(value) {
+      return value.toLocaleString('en-US') + ' Lekë';
+    }
+
+    function setProduct(name, price) {
+      document.getElementById('productNameView').textContent = name;
+      document.getElementById('productPriceView').textContent = formatLek(price);
+      document.getElementById('totalView').textContent = formatLek(price + SHIPPING);
+
+      document.getElementById('productInput').value = name;
+      document.getElementById('productPriceInput').value = formatLek(price);
+      document.getElementById('shippingInput').value = formatLek(SHIPPING);
+      document.getElementById('totalInput').value = formatLek(price + SHIPPING);
+
+      const select = document.getElementById('productSelect');
+      select.value = `${name}|${price}`;
+      window.scrollTo({ top: document.querySelector('.checkout-wrap').offsetTop - 60, behavior: 'smooth' });
+    }
+
+    function selectProduct(name, price) {
+      setProduct(name, price);
+    }
+
+    function updateFromSelect() {
+      const value = document.getElementById('productSelect').value;
+      const parts = value.split('|');
+      const name = parts[0];
+      const price = parseInt(parts[1], 10);
+      setProduct(name, price);
+    }
+
+    setProduct('Kallam Spinning Premium', 4500);
+  </script>
 </body>
 </html>
