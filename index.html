@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streha e Peshkatarit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f6fbff;
+      color: #1b2b34;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(13,77,122,0.08);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0d4d7a;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #2aa6b8;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    nav a {
+      font-weight: 600;
+      font-size: 15px;
+      color: #20485d;
+      transition: 0.25s;
+    }
+
+    nav a:hover {
+      color: #0d4d7a;
+    }
+
+    .nav-btn {
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #0d4d7a, #2aa6b8);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(13,77,122,0.20);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0 70px;
+      background:
+        radial-gradient(circle at top left, rgba(42,166,184,0.18), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(13,77,122,0.12), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f4fbff 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #e9f7fb;
+      color: #0d4d7a;
+      border: 1px solid #d6edf4;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.05;
+      color: #103b56;
+      margin-bottom: 18px;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: #2aa6b8;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #547284;
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 15px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: 0.25s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0d4d7a, #2aa6b8);
+      color: white;
+      box-shadow: 0 14px 34px rgba(13,77,122,0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #0d4d7a;
+      border: 1px solid #dcecf5;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid #e7f0f5;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      padding: 18px 20px;
+      border-radius: 18px;
+      min-width: 150px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      color: #103b56;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: #648091;
+      font-size: 14px;
+    }
+
+    .hero-card {
+      position: relative;
+      background: white;
+      border-radius: 30px;
+      padding: 18px;
+      box-shadow: 0 28px 60px rgba(16,59,86,0.14);
+      border: 1px solid #ebf3f8;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 24px;
+    }
+
+    .floating-card {
+      position: absolute;
+      left: -25px;
+      bottom: 30px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid #e6f2f7;
+      box-shadow: 0 18px 36px rgba(0,0,0,0.10);
+      padding: 16px 18px;
+      border-radius: 20px;
+      max-width: 240px;
+    }
+
+    .floating-card strong {
+      display: block;
+      color: #103b56;
+      margin-bottom: 5px;
+    }
+
+    .floating-card p {
+      font-size: 14px;
+      color: #5f7988;
+    }
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 42px;
+    }
+
+    .section-head span {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #2aa6b8;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      color: #103b56;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .section-head p {
+      color: #618091;
+      font-size: 16px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 22px;
+    }
+
+    .category {
+      background: linear-gradient(180deg, #ffffff 0%, #f7fcff 100%);
+      border: 1px solid #e5f0f6;
+      border-radius: 24px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 16px 34px rgba(15,58,86,0.06);
+      transition: 0.25s;
+    }
+
+    .category:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 42px rgba(15,58,86,0.10);
+    }
+
+    .category .icon {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 16px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      background: linear-gradient(135deg, #eaf8fb, #eef4ff);
+    }
+
+    .category h3 {
+      font-size: 18px;
+      color: #103b56;
+      margin-bottom: 6px;
+    }
+
+    .category p {
+      font-size: 14px;
+      color: #688390;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid #e8f1f6;
+      box-shadow: 0 20px 40px rgba(14,54,80,0.08);
+      transition: 0.25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 50px rgba(14,54,80,0.12);
+    }
+
+    .product-image-wrap {
+      position: relative;
+      padding: 14px;
+      background: linear-gradient(180deg, #f1f9fd 0%, #ffffff 100%);
+    }
+
+    .product-image-wrap img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+
+    .tag {
+      position: absolute;
+      top: 26px;
+      left: 26px;
+      background: rgba(255,255,255,0.92);
+      color: #0d4d7a;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    .product-content {
+      padding: 22px;
+    }
+
+    .product-content h3 {
+      font-size: 20px;
+      color: #123b53;
+      margin-bottom: 8px;
+    }
+
+    .product-content p {
+      color: #69818f;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0d4d7a;
+    }
+
+    .old-price {
+      font-size: 14px;
+      color: #9aaeb8;
+      text-decoration: line-through;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fcff 100%);
+      border: 1px solid #e6f1f6;
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.05);
+    }
+
+    .feature-box .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      font-size: 28px;
+      background: linear-gradient(135deg, #e7f7fb, #eef5ff);
+    }
+
+    .feature-box h3 {
+      color: #103b56;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .feature-box p {
+      color: #65808f;
+      font-size: 15px;
+    }
+
+    .order-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f7fcff 100%);
+      border: 1px solid #e6f1f6;
+      box-shadow: 0 22px 50px rgba(10,50,78,0.08);
+      border-radius: 30px;
+      padding: 34px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .order-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid #d9e9f2;
+      background: #fbfeff;
+      border-radius: 16px;
+      padding: 15px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #5ab8c9;
+      box-shadow: 0 0 0 4px rgba(42,166,184,0.10);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .total-box {
+      background: linear-gradient(135deg, #0d4d7a, #2aa6b8);
+      color: white;
+      border-radius: 22px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .total-box strong {
+      font-size: 22px;
+    }
+
+    .total-box span {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    footer {
+      background: #0f3650;
+      color: #d9e8f1;
+      padding: 34px 0;
+      margin-top: 30px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .footer-info p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .order-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card img {
+        height: 420px;
+      }
+
+      .floating-card {
+        position: static;
+        margin-top: 16px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .navbar {
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px 18px;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .product-image-wrap img {
+        height: 220px;
+      }
+
+      .order-box {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container navbar">
+      <div class="logo">Streha <span>e Peshkatarit</span></div>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Kreu</a></li>
+          <li><a href="#categories">Kategori</a></li>
+          <li><a href="#products">Produkte</a></li>
+          <li><a href="#order">Porosit</a></li>
+          <li><a href="#contact" class="nav-btn">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">🎣 Dyqani yt për materiale peshkimi</div>
+        <h1>Materiale cilësore për <span>çdo peshkatar</span></h1>
+        <p>
+          Kallama, makinete, fije, imitues dhe aksesorë me cilësi të mirë,
+          çmime të forta dhe porosi të shpejtë në gjithë Shqipërinë.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-primary">Shiko Produktet</a>
+          <a href="#order" class="btn btn-secondary">Bëj Porosi</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Pagesë cash</span>
+          </div>
+          <div class="stat">
+            <strong>+300 Lek</strong>
+            <span>Transport</span>
+          </div>
+          <div class="stat">
+            <strong>Fast</strong>
+            <span>Porosi e shpejtë</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1510130387422-82bed34b37e9?auto=format&fit=crop&w=1200&q=80" alt="Peshkim">
+        <div class="floating-card">
+          <strong>Produkte të zgjedhura</strong>
+          <p>Kombinime të bukura, faqe e pastër dhe stil më premium për dyqanin tënd.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories">
+    <div class="container">
+      <div class="section-head">
+        <span>Kategoritë</span>
+        <h2>Zgjidh çfarë të duhet</h2>
+        <p>Kategori të organizuara bukur që faqja të duket e pastër dhe profesionale.</p>
+      </div>
+
+      <div class="categories">
+        <div class="category">
+          <div class="icon">🎣</div>
+          <h3>Kallama</h3>
+          <p>Për spinning, surfcasting dhe bolo.</p>
+        </div>
+
+        <div class="category">
+          <div class="icon">⚙️</div>
+          <h3>Makineta</h3>
+          <p>Madhësi të ndryshme për çdo stil.</p>
+        </div>
+
+        <div class="category">
+          <div class="icon">🧵</div>
+          <h3>Fije</h3>
+          <p>Braid dhe nylon me cilësi të mirë.</p>
+        </div>
+
+        <div class="category">
+          <div class="icon">🪝</div>
+          <h3>Grepa</h3>
+          <p>Për det, lumë dhe përdorim të përditshëm.</p>
+        </div>
+
+        <div class="category">
+          <div class="icon">🐟</div>
+          <h3>Imitues</h3>
+          <p>Raglou, minnow, jig dhe shumë të tjera.</p>
+        </div>
+
+        <div class="category">
+          <div class="icon">🧰</div>
+          <h3>Aksesorë</h3>
+          <p>Çdo gjë shtesë që të duhet në peshkim.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="container">
+      <div class="section-head">
+        <span>Produktet</span>
+        <h2>Ofertat kryesore</h2>
+        <p>Këto janë vendosur me stil më rich që faqja të duket si webshop i fortë.</p>
+      </div>
+
+      <div class="products">
+        <div class="product-card">
+          <div class="product-image-wrap">
+            <span class="tag">Më i kërkuari</span>
+            <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80" alt="Makineta">
+          </div>
+          <div class="product-content">
+            <h3>Makineta 4000</h3>
+            <p>E përshtatshme për përdorim të përditshëm dhe kombinime të ndryshme.</p>
+            <div class="price-row">
+              <div class="price">3,500 Lek</div>
+              <div class="old-price">4,200 Lek</div>
+            </div>
+            <button class="btn btn-primary" onclick="setProduct('Makineta 4000', 3500)">Porosit Tani</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrap">
+            <span class="tag">Oferta</span>
+            <img src="https://images.unsplash.com/photo-1510130387422-82bed34b37e9?auto=format&fit=crop&w=1200&q=80" alt="Kallam">
+          </div>
+          <div class="product-content">
+            <h3>Kallam Spinning 2.70m</h3>
+            <p>Elegant, praktik dhe i përshtatshëm për peshkim aktiv në det.</p>
+            <div class="price-row">
+              <div class="price">5,000 Lek</div>
+              <div class="old-price">5,800 Lek</div>
+            </div>
+            <button class="btn btn-primary" onclick="setProduct('Kallam Spinning 2.70m', 5000)">Porosit Tani</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrap">
+            <span class="tag">Top</span>
+            <img src="https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?auto=format&fit=crop&w=1200&q=80" alt="Fije">
+          </div>
+          <div class="product-content">
+            <h3>Fije Braided 300m</h3>
+            <p>Fortësi e mirë dhe ndjeshmëri e lartë për kapje më të sakta.</p>
+            <div class="price-row">
+              <div class="price">1,800 Lek</div>
+              <div class="old-price">2,200 Lek</div>
+            </div>
+            <button class="btn btn-primary" onclick="setProduct('Fije Braided 300m', 1800)">Porosit Tani</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image-wrap">
+            <span class="tag">Set</span>
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80" alt="Imitues">
+          </div>
+          <div class="product-content">
+            <h3>Set Imituesish</h3>
+            <p>Zgjedhje e bukur për ata që duan kombinime gati për përdorim.</p>
+            <div class="price-row">
+              <div class="price">1,200 Lek</div>
+              <div class="old-price">1,600 Lek</div>
+            </div>
+            <button class="btn btn-primary" onclick="setProduct('Set Imituesish', 1200)">Porosit Tani</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span>Pse ne</span>
+        <h2>Pamje e bukur dhe besim te klienti</h2>
+        <p>Këto kuti e bëjnë faqen të duket më e pasur dhe më serioze.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="icon">✅</div>
+          <h3>Produkte cilësore</h3>
+          <p>Produkte të zgjedhura për klientë që duan gjë të mirë dhe të rregullt.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="icon">🚚</div>
+          <h3>Dërgesa në Shqipëri</h3>
+          <p>Transport i shtuar automatikisht në porosi për llogaritje të qartë.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="icon">💵</div>
+          <h3>Pagesë cash</h3>
+          <p>Klienti porosit nga faqja dhe paguan kur i vjen porosia.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="icon">⚡</div>
+          <h3>Porosi e shpejtë</h3>
+          <p>Formë direkte porosie pa humbur kohë në mesazhe të panevojshme.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="container">
+      <div class="section-head">
+        <span>Porosia</span>
+        <h2>Bëje porosinë direkt</h2>
+        <p>Zgjidh produktin dhe klienti plotëson të dhënat. Transporti shtohet vetë.</p>
+      </div>
+
+      <div class="order-box">
+        <form class="order-grid">
+          <div>
+            <input type="text" placeholder="Emri dhe Mbiemri" required>
+          </div>
+          <div>
+            <input type="tel" placeholder="Numri i telefonit" required>
+          </div>
+          <div class="full">
+            <input type="text" placeholder="Adresa e plotë" required>
+          </div>
+          <div>
+            <input type="text" id="productName" placeholder="Produkti i zgjedhur" readonly>
+          </div>
+          <div>
+            <input type="text" id="productPrice" placeholder="Çmimi i produktit" readonly>
+          </div>
+          <div class="full">
+            <div class="total-box">
+              <div>
+                <span>Transporti: 300 Lek</span>
+                <strong id="totalPrice">Totali: 300 Lek</strong>
+              </div>
+              <div>
+                <span>Pagesë cash në dorëzim</span>
+              </div>
+            </div>
+          </div>
+          <div class="full">
+            <textarea placeholder="Shënim për porosinë"></textarea>
+          </div>
+          <div class="full">
+            <button type="submit" class="btn btn-primary">Dërgo Porosinë</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">Streha e Peshkatarit</div>
+      </div>
+
+      <div class="footer-info">
+        <p>Telefon: +355 69 460 6944</p>
+        <p>Email: albaniatvc@gmail.com</p>
+        <p>Adresa: Lushnje, Shqipëri</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function setProduct(name, price) {
+      document.getElementById("productName").value = name;
+      document.getElementById("productPrice").value = price + " Lek";
+      document.getElementById("totalPrice").innerText = "Totali: " + (price + 300) + " Lek";
+      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>
