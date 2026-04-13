@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streha e Peshkatarit</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f8fbfd;
+      color: #222;
+    }
+
+    header {
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .topbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #0d4d7a;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #0d4d7a;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(13,77,122,0.55), rgba(13,77,122,0.55)),
+        url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 110px 20px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ffffff;
+      color: #0d4d7a;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #dff1fb;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      color: #0d4d7a;
+      margin-bottom: 35px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .category {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .category:hover {
+      transform: translateY(-5px);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      color: #0d4d7a;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+
+    .feature-box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      font-weight: bold;
+    }
+
+    .order-section {
+      background: #eaf4fb;
+      border-radius: 16px;
+      padding: 40px 20px;
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    input, textarea, select {
+      padding: 14px;
+      border: 1px solid #cfdde8;
+      border-radius: 8px;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .total-box {
+      background: white;
+      padding: 18px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #0d4d7a;
+      text-align: center;
+    }
+
+    footer {
+      background: #0d4d7a;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+    }
+
+    footer p {
+      margin: 8px 0;
+    }
+
+    @media (max-width: 768px) {
+      .topbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="topbar">
+      <div class="logo">Streha e Peshkatarit</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Kreu</a></li>
+          <li><a href="#categories">Kategori</a></li>
+          <li><a href="#products">Produkte</a></li>
+          <li><a href="#order">Porosit</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>Materiale Peshkimi Cilësore</h1>
+    <p>Gjej kallama, makinete, fije dhe aksesorë për çdo lloj peshkimi</p>
+    <a href="#products" class="btn">Shiko Produktet</a>
+  </section>
+
+  <section id="categories">
+    <h2 class="section-title">Kategoritë</h2>
+    <div class="categories">
+      <div class="category">Kallama</div>
+      <div class="category">Makineta</div>
+      <div class="category">Fije</div>
+      <div class="category">Grepa</div>
+      <div class="category">Imitues</div>
+      <div class="category">Aksesorë</div>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2 class="section-title">Produktet Kryesore</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1510130387422-82bed34b37e9?auto=format&fit=crop&w=900&q=80" alt="Kallam Peshkimi">
+        <div class="product-info">
+          <h3>Kallam Spinning 2.70m</h3>
+          <div class="price">5,000 Lek</div>
+          <button class="btn" onclick="setProduct('Kallam Spinning 2.70m', 5000)">Porosit</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80" alt="Makineta">
+        <div class="product-info">
+          <h3>Makineta 4000</h3>
+          <div class="price">3,500 Lek</div>
+          <button class="btn" onclick="setProduct('Makineta 4000', 3500)">Porosit</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?auto=format&fit=crop&w=900&q=80" alt="Fije Peshkimi">
+        <div class="product-info">
+          <h3>Fije Braided 300m</h3>
+          <div class="price">1,800 Lek</div>
+          <button class="btn" onclick="setProduct('Fije Braided 300m', 1800)">Porosit</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Imitues">
+        <div class="product-info">
+          <h3>Set Imituesish</h3>
+          <div class="price">1,200 Lek</div>
+          <button class="btn" onclick="setProduct('Set Imituesish', 1200)">Porosit</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Pse të Na Zgjidhni</h2>
+    <div class="features">
+      <div class="feature-box">Produkte cilësore</div>
+      <div class="feature-box">Pagesë Cash në Dorëzim</div>
+      <div class="feature-box">Transport në gjithë Shqipërinë</div>
+      <div class="feature-box">Shërbim i shpejtë dhe korrekt</div>
+    </div>
+  </section>
+
+  <section id="order">
+    <h2 class="section-title">Bëj Porosinë</h2>
+    <div class="order-section">
+      <form>
+        <input type="text" placeholder="Emri dhe Mbiemri" required>
+        <input type="tel" placeholder="Numri i telefonit" required>
+        <input type="text" placeholder="Adresa" required>
+        <input type="text" id="productName" placeholder="Produkti" readonly>
+        <input type="number" id="productPrice" placeholder="Çmimi i produktit" readonly>
+        <div class="total-box" id="totalPrice">Totali me transport: 300 Lek</div>
+        <textarea placeholder="Shënim për porosinë"></textarea>
+        <button type="submit" class="btn">Dërgo Porosinë</button>
+      </form>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p><strong>Streha e Peshkatarit</strong></p>
+    <p>Telefon: +355 69 460 6944</p>
+    <p>Adresa: Lushnje, Shqipëri</p>
+    <p>Email: albaniatvc@gmail.com</p>
+  </footer>
+
+  <script>
+    function setProduct(name, price) {
+      document.getElementById("productName").value = name;
+      document.getElementById("productPrice").value = price + " Lek";
+      document.getElementById("totalPrice").innerText = "Totali me transport: " + (price + 300) + " Lek";
+      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>
